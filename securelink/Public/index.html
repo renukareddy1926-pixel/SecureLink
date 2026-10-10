@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#080d1c" />
+  <title>SecureLink | P2P Security Simulator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="container">
+    <header class="header">
+      <div class="logo">🔐</div>
+      <div>
+        <h1>SecureLink</h1>
+        <p class="subtitle">P2P Telemetry Security Simulator</p>
+      </div>
+      <span class="pill">AES-256-GCM</span>
+    </header>
+
+    <section class="card">
+      <div class="section-heading">
+        <h2>Network status</h2>
+        <span id="connectionStatus" class="status">Connecting…</span>
+      </div>
+
+      <div class="mode-row">
+        <label for="mode">Device role</label>
+        <select id="mode">
+          <option value="sender">Mobile — Sender Node A</option>
+          <option value="receiver">Laptop — Receiver Node B</option>
+        </select>
+      </div>
+
+      <p class="hint">
+        Open this same app on both devices. Select Sender on mobile
+        and Receiver on laptop.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>Shared encryption passphrase</h2>
+      <label for="passphrase">Enter the same passphrase on both devices</label>
+      <input
+        id="passphrase"
+        type="password"
+        minlength="8"
+        placeholder="Enter a demo passphrase (8+ characters)"
+        autocomplete="off"
+      />
+      <button id="prepareButton" class="secondary">Prepare encryption</button>
+      <p id="keyStatus" class="hint">
+        Key not prepared. Enter the same passphrase on both devices.
+      </p>
+      <p class="hint">
+        The passphrase stays in the browser. Never enter a real password here.
+      </p>
+    </section>
+
+    <section id="senderPanel" class="card">
+      <h2>📱 Sender Node A</h2>
+      <label for="messageInput">Message / telemetry</label>
+      <textarea id="messageInput" rows="3"
+        placeholder="Hello Laptop"></textarea>
+      <button id="sendButton">Encrypt &amp; Send</button>
+
+      <div class="button-grid">
+        <button id="tamperButton" class="danger" disabled>
+          Send Tampered Packet
+        </button>
+        <button id="forgeButton" class="danger" disabled>
+          Send Forged Tag
+        </button>
+        <button id="replayButton" class="secondary" disabled>
+          Replay Last Packet
+        </button>
+      </div>
+
+      <p class="hint">
+        Send a valid message first. Then use the security test buttons.
+      </p>
+      <div id="senderPacket" class="packet empty">
+        No packet created yet.
+      </div>
+    </section>
+
+    <section id="receiverPanel" class="card hidden">
+      <h2>💻 Receiver Node B</h2>
+      <div id="receivedMessage" class="received">
+        Waiting for an encrypted packet…
+      </div>
+      <div id="receiverPacket" class="packet empty">
+        No packet received yet.
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="section-heading">
+        <h2>Security event log</h2>
+        <button id="clearLogButton" class="small secondary">Clear</button>
+      </div>
+      <div id="logs" class="logs" aria-live="polite"></div>
+    </section>
+
+    <footer>
+      <p>Educational software simulation — no physical LoRa radio is used.</p>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

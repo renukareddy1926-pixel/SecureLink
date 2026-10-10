@@ -1,0 +1,43 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SecureLink - Sender Node A</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0b1020;
+      color: white;
+      padding: 24px;
+      max-width: 600px;
+      margin: auto;
+    }
+    input, textarea, button {
+      box-sizing: border-box;
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      border-radius: 8px;
+    }
+    button { cursor: pointer; background: #3b82f6; color: white; border: 0; }
+  </style>
+</head>
+<body>
+  <h1>SecureLink</h1>
+  <h2>Sender Node A</h2>
+  <p>Secure message sender test page</p>
+
+  <label>Shared passphrase</label>
+  <input id="passphrase" type="password" placeholder="Enter demo passphrase">
+
+  <label>Message</label>
+  <textarea id="message" placeholder="Type your message"></textarea>
+
+  <button onclick="alert('Sender page loaded successfully!')">
+    Test Sender Page
+  </button>
+</body>
+</html>
+```
